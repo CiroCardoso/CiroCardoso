@@ -113,7 +113,7 @@ rollout _IconGen "Icon Generator 1.1"
 			dest_FileName = _addSuffix.text + dest_FileName
 		)
 		
-		if textPrefix != undefined do
+		if _addPrefix != undefined do
 		(
 			dest_FileName = dest_FileName + _addPrefix.text
 		)
