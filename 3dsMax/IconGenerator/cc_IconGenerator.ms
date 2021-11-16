@@ -127,13 +127,13 @@ rollout _IconGen "Icon Generator 1.0"
 		
 		if _size32.checked == true do
 		(
-			outputString = imageMagick + " convert " + sourceFile + " -resize 32x32! " + dest_Output + "_24i" + ext
+			outputString = imageMagick + " convert " + sourceFile + " -resize 32x32! " + dest_Output + "_32i" + ext
 			DOSCommand outputString 
 		)
 		
 		if _size24.checked == true do
 		(
-			outputString = imageMagick + " convert " + sourceFile + " -resize 24x24! " + dest_Output + "_32i" + ext
+			outputString = imageMagick + " convert " + sourceFile + " -resize 24x24! " + dest_Output + "_24i" + ext
 			DOSCommand outputString 
 		)
 		
@@ -160,13 +160,13 @@ rollout _IconGen "Icon Generator 1.0"
 		
 			if _size32.checked == true do
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 24x24! " + dest_Output + "_24a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 24x24! " + dest_Output + "_32a.bmp"
 				DOSCommand outputString 
 			)
 		
 			if _size24.checked == true do
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 32x32! " + dest_Output + "_32a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 32x32! " + dest_Output + "_24a.bmp"
 				DOSCommand outputString 
 			)
 		
