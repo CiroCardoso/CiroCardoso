@@ -11,7 +11,7 @@ cirocardoso@yahoo.co.uk
 
 
 try (DestroyDialog _IconGen) catch()
-rollout _IconGen "Icon Generator 1.0"
+rollout _IconGen "Icon Generator 1.1"
 (
 	
 	GroupBox _Instructions "Instructions" pos:[10, 20] height:50 width: 380
@@ -48,7 +48,8 @@ rollout _IconGen "Icon Generator 1.0"
 	
 	button _convertIcon "Convert Icons" width:250 height: 75 pos:[130, 400]
 	button _dirIcon "Open Directory" width:250 height: 30 pos:[130, 480]
-			
+		
+	global ext = ".bmp"
 		
 	on _chooseIconI pressed do
 	(
@@ -72,19 +73,21 @@ rollout _IconGen "Icon Generator 1.0"
 		
 	)
 	
+	
+	
 	on _PNG changed ext do 
 	(
-		if _PNG.state == 0 do
+		if _PNG.state == 1 do
 		(
 			global ext = ".bmp"
 		)
 		
-		if _PNG.state == 1 do
+		if _PNG.state == 2 do
 		(
 			global ext = ".png"
 		)
 	
-		if _PNG.state == 2 do
+		if _PNG.state == 3 do
 		(
 			global ext = ".jpg"
 		)
@@ -174,6 +177,7 @@ rollout _IconGen "Icon Generator 1.0"
 				outputString = imageMagick + " convert " + sourceAlpha + " -resize 16x15 " + dest_Output + "_16a" + ext
 				DOSCommand outputString 
 			)
+			
 			
 		)
 		
