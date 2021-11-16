@@ -74,17 +74,17 @@ rollout _IconGen "Icon Generator 1.0"
 	
 	on _PNG changed ext do 
 	(
-		if _PNG.state == 1 do
+		if _PNG.state == 0 do
 		(
 			global ext = ".bmp"
 		)
 		
-		if _PNG.state == 2 do
+		if _PNG.state == 1 do
 		(
 			global ext = ".png"
 		)
 	
-		if _PNG.state == 3 do
+		if _PNG.state == 2 do
 		(
 			global ext = ".jpg"
 		)
@@ -139,7 +139,7 @@ rollout _IconGen "Icon Generator 1.0"
 		
 		if _size16.checked == true do
 		(
-			outputString = imageMagick + " convert " + sourceFile + " -resize 16x15 " + dest_Output + "_16i.bmp"
+			outputString = imageMagick + " convert " + sourceFile + " -resize 16x15 " + dest_Output + "_16i" + ext
 			DOSCommand outputString 
 		)
 		
@@ -154,25 +154,25 @@ rollout _IconGen "Icon Generator 1.0"
 			
 			if _size48.checked == true do 
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 48x48! " + dest_Output + "_48a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 48x48! " + dest_Output + "_48a" + ext
 				DOSCommand outputString 
 			)
 		
 			if _size32.checked == true do
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 24x24! " + dest_Output + "_32a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 24x24! " + dest_Output + "_32a" + ext
 				DOSCommand outputString 
 			)
 		
 			if _size24.checked == true do
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 32x32! " + dest_Output + "_24a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 32x32! " + dest_Output + "_24a" + ext
 				DOSCommand outputString 
 			)
 		
 			if _size16.checked == true do
 			(
-				outputString = imageMagick + " convert " + sourceAlpha + " -resize 16x15 " + dest_Output + "_16a.bmp"
+				outputString = imageMagick + " convert " + sourceAlpha + " -resize 16x15 " + dest_Output + "_16a" + ext
 				DOSCommand outputString 
 			)
 			
