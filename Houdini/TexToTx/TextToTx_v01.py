@@ -7,6 +7,7 @@
 ##                                                                                                                   ##
 ## TODO: Adding the option for a sufix \ Adding the option to export exr                                             ##
 ##                                                                                                                   ##
+## Changelog: version 1.01 - adding a reset button                                                                   ##
 #######################################################################################################################
 
 import hou
@@ -101,7 +102,13 @@ class mainWindowUI (QMainWindow):
         self.progressBar.setGeometry(30,yHeight + 220,300,30)
         self.progressBar.setValue(0)
     
-    
+
+        #########################################################
+        ## RESET BUTTON
+        self.btReset = QPushButton("R", self)
+        self.btReset.setGeometry(168, yHeight +20, 20,20)
+        self.btReset.clicked.connect(self.resetAll)
+
     ## OPEN FOLDER BUTTON
     ## function for when you click on the Open Folder button
     def onOpenFolder(self):
@@ -123,6 +130,7 @@ class mainWindowUI (QMainWindow):
             files = [file for file in files if ".tx" not in file]
             filesPath = files.copy()
             self.midLabel.setText(str(len(filesPath)) + " textures will be converted")
+            self.progressBar.setValue(0)
             
                                 
     def getAll(self, folderPath):
@@ -161,6 +169,7 @@ class mainWindowUI (QMainWindow):
             self.btOpenFolder.setEnabled(False)
             self.midLabel.setText(str(len(self.selectedTextures)) + " textures will be converted")
             filesPath = imagePaths
+            self.progressBar.setValue(0)
         
     
     ## remove all the TX textures
@@ -170,8 +179,18 @@ class mainWindowUI (QMainWindow):
         command = f'"{imaketxPath}" "{image_path}" "{output_img}" --newer '
         subprocess.run(command, shell=True, capture_output=True, text=True)
 
+    ## function to reset all variables and buttons
+    def resetAll(self):
+        
+        global filesPath
+        filesPath = []
+        self.btOpenFolder.setEnabled(True)
+        self.checkbox.setEnabled(False)
+        self.btSelTex.setEnabled(True)
+        self.btConvert.setEnabled(False)
+        self.midLabel.setText("Use one of the options to select the textures")
+    
     ## function to process multiple images
-
     def processImagesParallel (self):
         
         global filesPath
