@@ -1,7 +1,7 @@
 - 👋 Hi, I’m @CiroCardoso
-- 👀 I’m interested in 3ds Max Maxscript
+- 👀 I’m interested in 3ds Max Maxscript + Python in Houdini
 - 🌱 I’m currently learning Python
-- 💞️ I’m looking to collaborate on 3ds Max\Arnold projects
+- 💞️ I’m looking to collaborate on 3ds Max\Arnold + Houdini projects
 - 📫 How to reach me cirocardoso (at) yahoo.co.uk
 
 <!---
