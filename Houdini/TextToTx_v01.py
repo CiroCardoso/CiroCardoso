@@ -111,20 +111,19 @@ class mainWindowUI (QMainWindow):
         global folderPath
         global files
         global filesPath
-        imageExt = (".png", ".jpg", ".jpeg", ".bmp", ".tif", ".tiff", ".exr", ".tga", ".hdr")
+        
         folderPath = QFileDialog.getExistingDirectory(self, "Select Folder")
         
         if folderPath:
+            
             self.checkbox.setEnabled(True)
             self.btSelTex.setEnabled(False)
             self.btConvert.setEnabled(True)
             files = [str(f) for f in Path(folderPath).iterdir() if f.is_file()]
             files = [file for file in files if ".tx" not in file]
-            #for texture in os.listdir(folderPath):
-            #    if texture.lower().endswith(imageExt):
-            #        filesPath.append(os.path.join(folderPath, texture))
-            filesPath.append(files)
+            filesPath = files.copy()
             self.midLabel.setText(str(len(filesPath)) + " textures will be converted")
+            
                                 
     def getAll(self, folderPath):
         ## this lists all the files in the selected folder and the subfolders
@@ -141,6 +140,7 @@ class mainWindowUI (QMainWindow):
             files = self.getAll(folderPath)
             filesPath = files
             self.midLabel.setText(str(len(filesPath)) + " textures will be converted")
+            
             
         else:
             files = self.getFilesFolder(folderPath)
@@ -183,7 +183,6 @@ class mainWindowUI (QMainWindow):
             
             for i, _ in enumerate(as_completed(runs)):
                 self.progressBar.setValue(i+1)
-        
         
 windowUI = mainWindowUI()
 windowUI.show()
