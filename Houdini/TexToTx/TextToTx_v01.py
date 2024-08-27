@@ -186,10 +186,12 @@ class mainWindowUI (QMainWindow):
         filesPath = []
         self.btOpenFolder.setEnabled(True)
         self.checkbox.setEnabled(False)
+        self.checkbox.setChecked(False)
         self.btSelTex.setEnabled(True)
         self.btConvert.setEnabled(False)
         self.midLabel.setText("Use one of the options to select the textures")
-    
+        self.progressBar.setValue(0)
+        
     ## function to process multiple images
     def processImagesParallel (self):
         
