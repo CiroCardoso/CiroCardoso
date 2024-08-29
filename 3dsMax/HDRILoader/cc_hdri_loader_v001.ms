@@ -1,11 +1,11 @@
 /*
 // A helper to improve the experience using OSL HDRI ENV 
 
-// HDRI Loader 1.0 by Ciro Cardoso
+// HDRI Loader 1.1 by Ciro Cardoso
 // Bugs, suggestions and feedback --> cirocardoso@yahoo.co.uk
 
-// Modified: 2022-03-16
-// Version: 1.0
+// Modified: 2024-08-29
+// Version: 1.1 - fix issue with docking system
 
 // A big thanks to Giuseppe Schiralli for helping me out with debugging and suggestions
 
@@ -30,7 +30,7 @@ gui = #("_appearanceGB", "_alignmentGB")
 --#########################################################################################
 --			I N T E R F A C E 
 --#########################################################################################
-cui.unRegisterDialogBar _hdriLoader
+--cui.unRegisterDialogBar _hdriLoader
 
 try(DestroyDialog _hdriLoader) catch ()
 
