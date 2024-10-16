@@ -5,7 +5,7 @@
 ##                                                                                                                   ##
 ## For feedback, suggestions or bugs, get in touch - cirocardoso@yahoo.co.uk                                         ##
 ##                                                                                                                   ##
-##                                                                                                                   ##
+## Thanks to @_Approximated_ and @yonatanbary for the help testing the code and the ideas                            ##
 ##                                                                                                                   ##
 ##                                                                                                                   ##
 #######################################################################################################################
