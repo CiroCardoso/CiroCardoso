@@ -67,7 +67,7 @@ class mainWindowUI (QMainWindow):
         mtlTX = False
         
         ## set window size
-        self.setWindowTitle("TexToMtlX Version 1.1")
+        self.setWindowTitle("TexToMtlX Version 1.2")
         self.setFixedSize(340, 570)
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         
@@ -577,25 +577,48 @@ class material: ## blueprint to create the materialX
                         texMain.parm('file').set(firstValue)
         
         ## we need to first check if we have a bump texture, then we check if we have a normal texture
+        bumpName = ""
+        normalName = ""
+        
         for texture in getMat:
             for textureKey, textureValue in textureTypesSorted.items():
                 if texture in textureValue:
                     if textureKey == 'texturesBump':
                         bumpFound = True
+                        bumpName = texture
                     if textureKey == 'texturesNormal':
                         normalFound = True
-                    
+                        normalName = texture
+        print(bumpName)######################
+        print(normalName)###################
+        
         if bumpFound or normalFound:
-            tex = texture ## this get's the key name for the nested dictionary [tires: {Alb: stuff }] we get the Alb key
-            firstValue = getMat[tex][0] # we only need the first value in the nested dictionary
-            
-            if self.mtlTX == True:
-                textValue = firstValue.split(".")[0]
-                firstValue = (str(textValue) + ".tx")
+
+            if bumpName:
+                firstValueBump = getMat[bumpName][0]
                 
-            firstValue = folderPath + "/" + firstValue
+                if self.mtlTX == True:
+                    textValueBump = firstValueBump.split(".")[0]
+                    firstValueBump = (str(textValueBump) + ".tx")
+                
+                firstValueBump = folderPath + "/" + firstValueBump
+            else:
+                pass
+
+            if normalName:
+                firstValueNormal = getMat[normalName][0]
+
+                if self.mtlTX == True:
+                    textValueNormal = firstValueNormal.split(".")[0]
+                    firstValueNormal = (str(textValueNormal) + ".tx")
+                firstValueNormal = folderPath + "/" + firstValueNormal
             
+            else:
+                pass    
+
+                
             if bumpFound and normalFound:
+                
                 bump = hou.node(bumpNormal['bump'])
                 normal = hou.node(bumpNormal['normal'])
                 mtlxBump = subnetContext.createNode('mtlxbump', 'mtlxBump')
@@ -606,18 +629,21 @@ class material: ## blueprint to create the materialX
                 mtlxBump.setInput(3, mtlxNormal)
             
                 if 'UDIM'in getMat:
+                
                     if getMat['UDIM'] == True:
-                        replaceUdim = firstValue.replace("1001", "<UDIM>")
-                        bump.parm('file').set(replaceUdim)
-                        normal.parm('file').set(replaceUdim)
+                        replaceUdimBump = firstValueBump.replace("1001", "<UDIM>")
+                        replaceUdimNormal = firstValueNormal.replace("1001", "<UDIM>")
+                        bump.parm('file').set(replaceUdimBump)
+                        normal.parm('file').set(replaceUdimNormal)
                     else:
-                        bump.parm('file').set(firstValue)
-                        normal.parm('file').set(firstValue)
+                        bump.parm('file').set(firstValueBump)
+                        normal.parm('file').set(firstValueNormal)
                 else:
-                    bump.parm('file').set(firstValue)
-                    normal.parm('file').set(firstValue)
+                     bump.parm('file').set(firstValueBump)
+                     normal.parm('file').set(firstValueNormal)
         
             elif bumpFound and not normalFound:
+
                 bump = hou.node(bumpNormal['bump'])
                 mtlxBump = subnetContext.createNode('mtlxbump', 'mtlxBump')
                 mtlxBump.setInput(0,bump)
@@ -625,14 +651,15 @@ class material: ## blueprint to create the materialX
 
                 if 'UDIM'in getMat:
                     if getMat['UDIM'] == True:
-                        replaceUdim = firstValue.replace("1001", "<UDIM>")
+                        replaceUdim = firstValueBump.replace("1001", "<UDIM>")
                         bump.parm('file').set(replaceUdim)
                     else:
-                        bump.parm('file').set(firstValue)
+                        bump.parm('file').set(firstValueBump)
                 else:
-                    bump.parm('file').set(firstValue)
+                    bump.parm('file').set(firstValueBump)
                         
             elif normalFound and not bumpFound:
+                
                 normal = hou.node(bumpNormal['normal'])
                 mtlxNormal = subnetContext.createNode('mtlxnormalmap', 'mtxlNormal')
                 mtlxNormal.setInput(0, normal)
@@ -640,12 +667,12 @@ class material: ## blueprint to create the materialX
 
                 if 'UDIM'in getMat:
                     if getMat['UDIM'] == True:
-                        replaceUdim = firstValue.replace("1001", "<UDIM>")
+                        replaceUdim = firstValueNormal.replace("1001", "<UDIM>")
                         normal.parm('file').set(replaceUdim)
                     else:
-                        normal.parm('file').set(firstValue)
+                        normal.parm('file').set(firstValueNormal)
                 else:
-                    normal.parm('file').set(firstValue)
+                    normal.parm('file').set(firstValueNormal)
                             
         subnetContext.layoutChildren()
         obj.layoutChildren()
