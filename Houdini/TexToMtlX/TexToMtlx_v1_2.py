@@ -589,9 +589,7 @@ class material: ## blueprint to create the materialX
                     if textureKey == 'texturesNormal':
                         normalFound = True
                         normalName = texture
-        print(bumpName)######################
-        print(normalName)###################
-        
+                
         if bumpFound or normalFound:
 
             if bumpName:
