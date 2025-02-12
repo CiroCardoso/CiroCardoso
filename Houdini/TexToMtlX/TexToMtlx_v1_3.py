@@ -995,3 +995,6 @@ class MtlxMaterial:
         '''Layout nodes in the network'''
         subnet_context.layoutChildren()
         self.node_lib.layoutChildren()
+
+window = TxToMtlx()
+window.show()
