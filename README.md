@@ -1,5 +1,5 @@
 - 👋 Hi, I’m Ciro Cardoso
-- 👀 I’m interested in creating cool tools for 
+- 👀 I’m currently in creating cool tools for Animation\VFX
 - 🌱 I’m currently learning C++
 - 💞️ I’m looking to collaborate on 3ds Max\Arnold + Houdini projects
 - 📫 How to reach me cirocardoso (at) yahoo.co.uk
